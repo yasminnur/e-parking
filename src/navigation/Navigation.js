@@ -67,7 +67,7 @@ export default function Navigation() {
           height: 50,
           backgroundColor: "red",
         }}
-        name="Scan"
+        name="Scan Ticket"
         component={ScanScreen}
         options={{
           tabBarIcon: ({ focused }) => (
