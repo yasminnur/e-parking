@@ -1,6 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+
+// Image import
+import TiketMasuk from "../../assets/Ticket-masuk.svg";
+import TiketKeluar from "../../assets/Ticket-keluar.svg";
+import Arrow from "../../assets/arrow.svg";
 
 export default function PilihTambahTiket() {
   const navigation = useNavigation();
@@ -11,39 +17,46 @@ export default function PilihTambahTiket() {
   const handleKeluarPress = () => {
     navigation.navigate("Tiket Manual Keluar");
   };
+  const handleBack = () => {
+    navigation.navigate("Scan Screen");
+  };
   return (
     <>
+      <StatusBar style="auto" />
+      <View style={{flexDirection: "row", alignItems: "center", paddingTop: 50, paddingBottom: 25, paddingHorizontal: 20, backgroundColor: 'white' }} >
+          <TouchableOpacity onPress={handleBack}><Arrow /></TouchableOpacity>
+          <Text style={{  textAlign: "center", flex: 1, fontSize: 16, fontWeight: 'bold' }}>Tambah Tiket Manual</Text>
+        </View>
+     
       <View style={styles.container}>
-        <TouchableOpacity style={styles.masuk} onPress={handleMasukPress}>
-          <Text style={styles.text}>Tiket Masuk</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.keluar} onPress={handleKeluarPress}>
-          <Text style={styles.text}>Tiket Keluar</Text>
-        </TouchableOpacity>
-      </View>
+        <View>
+        <TouchableOpacity onPress={handleMasukPress}>
+          <TiketMasuk  />
+          </TouchableOpacity>
+        </View>
+        <View>
+        <TouchableOpacity onPress={handleKeluarPress}>
+        <TiketKeluar  />
+          </TouchableOpacity>
+          </View>
+        </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 40,
-    paddingBottom: 40,
-    paddingRight: 20,
-    paddingLeft: 20,
+    // flex: 1,
+    paddingTop: 250,
+    paddingBottom: 250,
+    // paddingRight: 20,
+    // paddingLeft: 20,
     position: "relative",
     display: "flex",
     flexDirection: "column",
-    gap: 30,
-  },
-  masuk: {
-    padding: 15,
-    backgroundColor: "green",
-  },
-  keluar: {
-    padding: 15,
-    backgroundColor: "red",
+    gap: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   text: {
     fontSize: 15,

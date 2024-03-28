@@ -1,7 +1,7 @@
-import * as React from "react";
-import { View, Text, Button, StyleSheet, Image } from "react-native";
-// const logoBus = require('./assets/account.png')
+import React, { useState, useEffect } from "react";
+import { View, Text, Button, StyleSheet, Image, ScrollView, } from "react-native";
 import Bar from "../components/Chart";
+import { useNavigation } from "@react-navigation/native";
 
 // Image import
 import Account from "../../assets/account.svg";
@@ -9,10 +9,26 @@ import Bus from "../../assets/Bus.svg";
 import Ticket from "../../assets/Ticket.svg";
 import Danger from "../../assets/Danger.svg";
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ route }) {
+  const navigation = useNavigation();
+  
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: true,
+    });
+  }, []);
+
+  const { onGoBack } = route.params || {};
+
+  useEffect(() => {
+    if (onGoBack) {
+      onGoBack();
+    }
+  }, [onGoBack]);
+  
   return (
     <>
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View
           style={{
             marginBottom: 35,
@@ -133,16 +149,16 @@ export default function HomeScreen({ navigation }) {
         <View>
           <Bar />
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 60,
-    paddingBottom: 40,
+    // flex: 1,
+    paddingTop: 50,
+    paddingBottom: 130,
     paddingHorizontal: 30,
     backgroundColor: "#F0F2F5",
     overflow: "scroll",

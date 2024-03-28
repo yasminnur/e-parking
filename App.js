@@ -7,13 +7,11 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 import ScanScreen from "./src/screens/ScanScreen";
 import TiketManualMasuk from "./src/screens/TiketManualMasuk";
 import TiketManualKeluar from "./src/screens/TiketManualKeluar";
-// import KeluarDone from "./navigation/screens/KeluarDone";
 import MasukDone from "./src/screens/MasukDone";
 import PilihTambahTiket from "./src/screens/PilihTambahTiket";
 import ScanTiketKeluar from "./src/screens/ScanTiketKeluar";
 import ScanTiketMasuk from "./src/screens/ScanTiketMasuk";
 import TidakSesuai from "./src/screens/TidakSesuai";
-import TiketScreen from "./src/screens/TiketScreen";
 
 import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
@@ -44,12 +42,10 @@ const screenOptions = {
 function App() {
   return (
     <>
-      <NavigationContainer>
-        {/* <Navigation screenOptions={screenOptions} /> */}
-        <Stack.Navigator>
-          {/* <Stack.Navigator screenOptions={{headerShown: false}}> */}
+      <NavigationContainer screenOptions={{headerShown: false}}>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen
-            name="Main"
+            name="navbar"
             component={Navigation}
             options={{ headerShown: false }}
           />
@@ -68,18 +64,14 @@ function App() {
             name="Tiket Manual Keluar"
             component={TiketManualKeluar}
           />
-
-          {/* <Stack.Screen name="KeluarDone" component={KeluarDone} /> */}
-          <Stack.Screen name="Masuk Done" component={MasukDone} />
+          <Stack.Screen name="Done" component={MasukDone} />
           <Stack.Screen
-            name="Tambah Tiket Manual"
+            name="Pilih tiket"
             component={PilihTambahTiket}
           />
           <Stack.Screen name="Scan Tiket Keluar" component={ScanTiketKeluar} />
           <Stack.Screen name="Scan Tiket Masuk" component={ScanTiketMasuk} />
           <Stack.Screen name="Tidak Sesuai" component={TidakSesuai} />
-
-          <Stack.Screen name="Tiket Screen" component={TiketScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

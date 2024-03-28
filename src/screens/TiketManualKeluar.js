@@ -4,6 +4,8 @@ import { View, Text, TextInput,
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 
+import Arrow from "../../assets/arrow.svg";
+
 
 export default function TiketManualKeluar() {
   const navigation = useNavigation();
@@ -11,8 +13,16 @@ export default function TiketManualKeluar() {
   const handleScanKeluarPress = () => {
     navigation.navigate('Scan Tiket Keluar'); // Mengarahkan ke halaman PilihTiket
   };
+
+  const handleBack = () => {
+    navigation.navigate("Pilih tiket");
+  };
   return (
     <>
+      <View style={{  flexDirection: "row", alignItems: "center", paddingTop: 50, paddingBottom: 25, paddingHorizontal: 20, backgroundColor: 'white'}} >
+          <TouchableOpacity onPress={handleBack}><Arrow /></TouchableOpacity>
+          <Text style={{  textAlign: "center", flex: 1, fontSize: 16, fontWeight: 'bold' }}>Tambah Tiket Manual</Text>
+        </View>
       <View style={style.container}>
     <View style={{ marginBottom: 20 }}>
           <Text style={style.text}>Nomor Polisi</Text>
@@ -23,7 +33,7 @@ export default function TiketManualKeluar() {
           ></TextInput>
       </View>
       <TouchableOpacity style={style.button} onPress={handleScanKeluarPress}>
-          <Text style={[style.text, { color: 'white' }]}>Kirim</Text>
+          <Text style={ { color: 'white', fontWeight: "600", }}>Kirim</Text>
         </TouchableOpacity>
         </View>
       </>
@@ -52,10 +62,10 @@ const style = StyleSheet.create({
   },
   text: {
     fontWeight: "600",
-    marginBottom: 5,
+    marginBottom: 10,
   },
   button: {
-    backgroundColor: 'green',
+    backgroundColor: '#269544',
     padding: 10,
     borderRadius: 10,
     alignItems: 'center',
